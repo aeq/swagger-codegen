@@ -1,16 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>{{groupId}}</groupId>
+
+<parent>
+<groupId>com.fincad</groupId>
+<artifactId>f3</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+</parent>
+
   <artifactId>{{artifactId}}</artifactId>
   <packaging>jar</packaging>
-  <name>{{artifactId}}</name>
-  <version>{{artifactVersion}}</version>
-  <scm>
-    <connection>scm:git:git@github.com:swagger-api/swagger-mustache.git</connection>
-    <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-  </scm>
+  
+  
   <prerequisites>
     <maven>2.2.0</maven>
   </prerequisites>
