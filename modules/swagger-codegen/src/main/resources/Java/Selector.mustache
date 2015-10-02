@@ -1,0 +1,38 @@
+package {{invokerPackage}};
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Selector {
+	private String name;
+	private Map<String, String> variables = new HashMap<String, String>();
+	
+	public Selector(){}
+	public Selector(String name){
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Map<String, String> getVariables() {
+		return variables;
+	}
+
+	public void setVariables(Map<String, String> variables) {
+		this.variables = variables;
+	}
+	
+	public void addVariable(String name, String value){
+		this.variables.put(name, value);
+	}
+	
+	public void removeVarible(String name){
+		this.variables.remove(name);
+	}
+}
