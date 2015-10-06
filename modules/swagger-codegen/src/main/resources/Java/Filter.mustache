@@ -13,7 +13,7 @@ public class Filter {
 	
 	
 	
-	enum Operator {
+	public enum Operator {
 		GREATER_THAN("gt"), EQUAL_TO("eq"), LESS_THAN("lt"), GREATER_THAN_OR_EQUAL("gte"), LESS_THAN_OR_EQUAL("lte"), 
 		CASE_SENSITIVE_REGULAR_EXPRESSION("regex"), CASE_INSENSITIVE_REGULAR_EXPRESSION("iregex"), 
 		CASE_SENSITIVE_CONTAINMENT("contains"), CASE_INSENSITIVE_CONTAINMENT("icontains"),
@@ -32,7 +32,7 @@ public class Filter {
 	    }
 	}
 	
-	enum PropertyType {
+	public enum PropertyType {
 		
 		OBJECT_PROPERTY("object_property"), ARGUMENT("argument"), TAG("tag");
 		private final String name;
@@ -56,6 +56,19 @@ public class Filter {
 	private String value;
 	private PropertyType propertyType;
 	private Integer truncate;
+
+	public void setCritieria(String field, Operator operator, String value, PropertyType propertyType){
+		setCritieria(field, operator, value, propertyType, null, true);
+	}
+	
+	public void setCritieria(String field, Operator operator, String value, PropertyType propertyType, Integer truncate, Boolean filter){
+		setField(field);
+		setOperator(operator);
+		setValue(value);
+		setPropertyType(propertyType);
+		setTruncate(truncate);
+		setFilter(filter);
+	}
 	
 	public Boolean getFilter() {
 		return filter;
