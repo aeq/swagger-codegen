@@ -4,6 +4,7 @@ import {{invokerPackage}}.ApiException;
 import {{invokerPackage}}.ApiClient;
 import {{invokerPackage}}.Configuration;
 import {{invokerPackage}}.Select;
+import {{invokerPackage}}.Filter;
 
 import {{modelPackage}}.*;
 
@@ -55,6 +56,22 @@ public class {{classname}} {
       ret = getAll(expand);
     } finally {
       ApiClient.select.remove();
+    }
+    
+    return ret;  
+  }
+
+  public {{baseName}}Set filter(Filter filter, String expand) throws ApiException{
+
+    if(filter != null) {
+      ApiClient.filter.set(filter);
+    }
+    
+    {{baseName}}Set ret = null;
+    try {
+      ret = getAll(expand);
+    } finally {
+      ApiClient.filter.remove();
     }
     
     return ret;  

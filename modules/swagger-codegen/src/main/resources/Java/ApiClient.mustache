@@ -49,6 +49,7 @@ public class ApiClient {
 
   private DateFormat dateFormat;
   public static ThreadLocal<Select> select = new ThreadLocal<Select>();
+  public static ThreadLocal<Filter> filter = new ThreadLocal<Filter>();
 
   public ApiClient() {
     // Use ISO 8601 format for date and datetime.
@@ -348,9 +349,17 @@ public class ApiClient {
     Select sel = select.get();
     if (sel != null) {
       queryParams.put("select", sel.getName());
-      Map<String, String> variableMap = sel.getParameters();
-      if (variableMap != null) {
-        queryParams.putAll(variableMap);
+      Map<String, String> paramMap = sel.getParameters();
+      if (paramMap != null) {
+        queryParams.putAll(paramMap);
+      }
+    }
+
+    Filter fil = filter.get();
+    if (fil != null) {
+      Map<String, String> paramMap = fil.paramMap();
+      if (paramMap != null) {
+        queryParams.putAll(paramMap);
       }
     }
 
