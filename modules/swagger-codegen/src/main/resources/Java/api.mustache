@@ -41,24 +41,23 @@ public class {{classname}} {
     this.apiClient = apiClient;
   }
 
-  public TradeSet select(Select select, String expand) throws ApiException{
+  public {{baseName}}Set select(Select select, String expand) throws ApiException{
 
     if(select != null) {
-      ApiClient.select.set(select);
       if(select.getName() == null) {
         throw new ApiException(400, "Missing the name of the Select.");
       }
+      ApiClient.select.set(select);
     }
     
-    TradeSet ret = null;
+    {{baseName}}Set ret = null;
     try {
       ret = getAll(expand);
     } finally {
       ApiClient.select.remove();
     }
     
-    return ret;
-    
+    return ret;  
   }
 
   {{#operation}}
