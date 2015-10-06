@@ -1,0 +1,112 @@
+package {{invokerPackage}};
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Filter {
+	public final static String FILTER_PARAM = "filter";
+	public final static String FIELD_PARAM = "field";
+	public final static String OPERATOR_PARAM = "operator";
+	public final static String VALUE_PARAM = "value";
+	public final static String PROPERTY_TYPE_PARAM = "property_type";
+	public final static String TRUNCATE_PARAM = "truncate";
+	
+	
+	
+	enum Operator {
+		GREATER_THAN("gt"), EQUAL_TO("eq"), LESS_THAN("lt"), GREATER_THAN_OR_EQUAL("gte"), LESS_THAN_OR_EQUAL("lte"), 
+		CASE_SENSITIVE_REGULAR_EXPRESSION("regex"), CASE_INSENSITIVE_REGULAR_EXPRESSION("iregex"), 
+		CASE_SENSITIVE_CONTAINMENT("contains"), CASE_INSENSITIVE_CONTAINMENT("icontains"),
+		CASE_SENSITIVE_STARTS_WITH("startswith"), CASE_INSENSITIVE_STARTS_WITH("istartswith");
+		
+		private final String name;
+		private Operator(String s) {
+	        name = s;
+	    }
+		public boolean equalsName(String otherName) {
+	        return (otherName == null) ? false : name.equals(otherName);
+	    }
+
+	    public String toString() {
+	       return this.name;
+	    }
+	}
+	
+	enum PropertyType {
+		
+		OBJECT_PROPERTY("object_property"), ARGUMENT("argument"), TAG("tag");
+		private final String name;
+		private PropertyType(String s) {
+	        name = s;
+	    }
+		public boolean equalsName(String otherName) {
+	        return (otherName == null) ? false : name.equals(otherName);
+	    }
+
+	    public String toString() {
+	       return this.name;
+	    }
+		
+	}
+	
+	
+	private Boolean filter = true;
+	private String field;
+	private Operator operator;
+	private String value;
+	private PropertyType propertyType;
+	private Integer truncate;
+	
+	public Boolean getFilter() {
+		return filter;
+	}
+	public void setFilter(Boolean filter) {
+		this.filter = filter;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
+	public Operator getOperator() {
+		return operator;
+	}
+	public void setOperator(Operator operator) {
+		this.operator = operator;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public PropertyType getPropertyType() {
+		return propertyType;
+	}
+	public void setPropertyType(PropertyType propertyType) {
+		this.propertyType = propertyType;
+	}
+	public Integer getTruncate() {
+		return truncate;
+	}
+	public void setTruncate(Integer truncate) {
+		this.truncate = truncate;
+	}
+	
+	public Map<String, String> paramMap(){
+		// All the fields (except truncate) are required, so make it throw a NullPointException if there is a null field
+		Map<String, String> ret = new HashMap<String, String>();
+		ret.put(FILTER_PARAM, filter.toString());
+		ret.put(FIELD_PARAM, this.field.toString()); 
+		ret.put(OPERATOR_PARAM, this.operator.toString());
+		ret.put(VALUE_PARAM, this.value.toString());
+		ret.put(PROPERTY_TYPE_PARAM, this.propertyType.toString());
+		if (truncate != null) {
+			ret.put(TRUNCATE_PARAM, this.truncate.toString());
+		}
+		return ret;
+		
+	}
+	
+}
