@@ -48,7 +48,7 @@ public class ApiClient {
   private Map<String, Authentication> authentications;
 
   private DateFormat dateFormat;
-  public static ThreadLocal<Selector> selector = new ThreadLocal<Selector>();
+  public static ThreadLocal<Select> select = new ThreadLocal<Select>();
 
   public ApiClient() {
     // Use ISO 8601 format for date and datetime.
@@ -345,10 +345,10 @@ public class ApiClient {
   public String invokeAPI(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String accept, String contentType, String[] authNames) throws ApiException {
     updateParamsForAuth(authNames, queryParams, headerParams);
 
-    Selector sel = selector.get();
+    Select sel = select.get();
     if (sel != null) {
       queryParams.put("select", sel.getName());
-      Map<String, String> variableMap = sel.getVariables();
+      Map<String, String> variableMap = sel.getParameters();
       if (variableMap != null) {
         queryParams.putAll(variableMap);
       }

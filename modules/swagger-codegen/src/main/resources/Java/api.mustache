@@ -3,7 +3,7 @@ package {{package}};
 import {{invokerPackage}}.ApiException;
 import {{invokerPackage}}.ApiClient;
 import {{invokerPackage}}.Configuration;
-import {{invokerPackage}}.Selector;
+import {{invokerPackage}}.Select;
 
 import {{modelPackage}}.*;
 
@@ -41,16 +41,20 @@ public class {{classname}} {
     this.apiClient = apiClient;
   }
 
-  public TradeSet find(String expand, Selector selector) throws ApiException{
-    if(selector != null) {
-      ApiClient.selector.set(selector);
+  public TradeSet select(Select select, String expand) throws ApiException{
+
+    if(select != null) {
+      ApiClient.select.set(select);
+      if(select.getName() == null) {
+        throw new ApiException(400, "Missing the name of the Select.");
+      }
     }
     
     TradeSet ret = null;
     try {
       ret = getAll(expand);
     } finally {
-      ApiClient.selector.remove();
+      ApiClient.select.remove();
     }
     
     return ret;

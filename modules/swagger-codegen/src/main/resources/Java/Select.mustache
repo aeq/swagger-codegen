@@ -3,12 +3,12 @@ package {{invokerPackage}};
 import java.util.HashMap;
 import java.util.Map;
 
-public class Selector {
+public class Select {
 	private String name;
 	private Map<String, String> variables = new HashMap<String, String>();
 	
-	public Selector(){}
-	public Selector(String name){
+	public Select(){}
+	public Select(String name){
 		this.name = name;
 	}
 
@@ -20,19 +20,19 @@ public class Selector {
 		this.name = name;
 	}
 
-	public Map<String, String> getVariables() {
+	public Map<String, String> getParameters() {
 		return variables;
 	}
 
-	public void setVariables(Map<String, String> variables) {
+	public void setParameters(Map<String, String> variables) {
 		this.variables = variables;
 	}
 	
-	public void addVariable(String name, String value){
+	public void setParameter(String name, String value){
 		this.variables.put(name, value);
 	}
 	
-	public void removeVarible(String name){
+	public void removeParameter(String name){
 		this.variables.remove(name);
 	}
 }
