@@ -42,7 +42,7 @@ public class {{classname}} {
     this.apiClient = apiClient;
   }
 
-  public {{baseName}}Set select(Select select, String expand) throws ApiException{
+  public List<{{baseName}}> select(Select select, String expand) throws ApiException{
 
     if(select != null) {
       if(select.getName() == null) {
@@ -51,7 +51,7 @@ public class {{classname}} {
       ApiClient.select.set(select);
     }
     
-    {{baseName}}Set ret = null;
+    List<{{baseName}}> ret = null;
     try {
       ret = getAll(expand);
     } finally {
@@ -61,13 +61,13 @@ public class {{classname}} {
     return ret;  
   }
 
-  public {{baseName}}Set filter(Filter filter, String expand) throws ApiException{
+  public List<{{baseName}}> filter(Filter filter, String expand) throws ApiException{
 
     if(filter != null) {
       ApiClient.filter.set(filter);
     }
     
-    {{baseName}}Set ret = null;
+    List<{{baseName}}> ret = null;
     try {
       ret = getAll(expand);
     } finally {
